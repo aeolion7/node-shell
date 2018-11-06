@@ -2,14 +2,16 @@
 process.stdout.write('prompt > ');
 
 // The stdin 'data' event fires after a user types in a line
+const pwd = require('./pwd');
+const ls = require('./ls');
 
 process.stdin.on('data', (data) => { // event listener
   const cmd = data.toString().trim(); // remove new line
 
   if (cmd === 'pwd') {
-    process.stdout.write(`Current directory: ${process.cwd()}`);
-  } else {
-    process.stdout.write('You typed: ' + cmd);
+    pwd();
+  } else if (cmd === 'ls') {
+    ls();
   }
 
   process.stdout.write('\nprompt > ');
